@@ -42,13 +42,12 @@ A) Make use of Views to ensure only required column and data are visible to the 
 
 B) Consider RBAC (Role-based access control) to provide a form of security based on permissions to restrict certain access to system components and data. This will provide a more manageable way of providing access to users of the system.
 
-The user of the system will be assigned a Role, where permissions are attached to a given role. Depending on the role a user has, they will restricted to certain areas of the system and data.
+The user of the system will be assigned a Role, where permissions are attached to a given role. Depending on the role a user has, they will be restricted to certain areas of the system and data.
 
 Example roles:
 - Admin
 - Organisation
 - User
-
 
 Example access for view components:
 - view_profile_activity
@@ -61,6 +60,7 @@ Example access for action:
 - action_delete_user
 
 Example access for data:
-- data_users_all
-- data_users_organisation
+- data_events_all
+- data_events_organisation
+- data_events_user
 
