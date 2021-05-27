@@ -25,7 +25,7 @@ class UserEventService
         $this->userEventRepository = $userEventRepository;
     }
 
-	/**
+    /**
      * Get events for dashboard.
      *
      * Events returned will be based on current user role
@@ -35,8 +35,8 @@ class UserEventService
      * @param string $toDate
      * @return array
      */
-	public function getDashboardEvents(array $eventTypeIds = [], string $fromDate = '', string $toDate = '') : array
-	{
+     public function getDashboardEvents(array $eventTypeIds = [], string $fromDate = '', string $toDate = '') : array
+     {
         $userEvents = [];
 
         // Determine what level of data access the current user has
@@ -50,4 +50,4 @@ class UserEventService
         }
 
         return $userEvents;
-	}
+     }
