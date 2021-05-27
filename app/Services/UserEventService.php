@@ -39,12 +39,13 @@ class UserEventService
 	{
         $userEvents = [];
 
+        // Determine what level of data access the current user has
         $user = Auth::user();
-        if ($user->isClientRole()) {
-            $userEvents = $this->userEventRepository->getOrganisationEvents($user->id, $eventTypeIds, $fromDate, $toDate);
-        } else if ($user->isUserRole()) {
+        if ($user->hasPermission(PERMISSION_ID_EVENTS_USER)) {
             $userEvents = $this->userEventRepository->getUserEvents($user->organisation_id, $eventTypeIds, $fromDate, $toDate);
-        } else {
+        } else if ($user->hasPermission(PERMISSION_ID_EVENTS_ORGAISATION)) {
+            $userEvents = $this->userEventRepository->getOrganisationEvents($user->id, $eventTypeIds, $fromDate, $toDate);
+        } else if ($user->hasPermission(PERMISSION_ID_EVENTS_ALL)) {
             $userEvents = $this->userEventRepository->getAllEvents($eventTypeIds, $fromDate, $toDate);
         }
 
