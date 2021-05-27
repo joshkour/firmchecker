@@ -1,11 +1,7 @@
 <?php
-// Admin
+// Roles
 define('ROLE_ID_ADMIN', 1);
-
-// Client
 define('ROLE_ID_CLIENT', 2);
-
-// User
 define('ROLE_ID_USER', 3);
 
 // Permissions
