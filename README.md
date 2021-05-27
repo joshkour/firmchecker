@@ -17,22 +17,23 @@ Mediates between the domain and data mapping layers using a collection-like inte
 
 ## Database Performance (sluggish data-reads from the MySQL database)
 
-A) Look at enabling slow query logs and set a threshold and review the queries that are taking longer than this threshold. Review each query and determine if the query can be improve i.e ensure only columns required are being selected, look out for LIKE statements, make use of composite indexes are present that aligns with existing queries (Also look to remove uncessary indexes).
+-) Ensure that enough RAM is set aside for InnoDB buffer pool via mysql configuration.
 
-B) Look at using temporary tables as they are stored in memory, which are faster than disk based tables. If there are complex queries, use temporary tables
-to break it up into simpler queries as oppose to joins.
+-) Look to use some form of in-memory caching mechanism such as memcache/Redis for better performance. Redis supports partitioning across multiple instances, thus allowing horizontal scaling for performance (using memory of each instance for a partition).
 
-C) Breaking down a single table down into smaller tables. If the number of rows in one single table with proper indexes is not performing well, making multiple mysql queries with reduced rows in each may perform better.
+-) Look to use some form of output (HTML) caching to further improve performance by bypassing database and/or in-memory cache altogether. Break down websites into modules (i.e navigation, footer, most popular etc) and cache these HTML outputs reducing the number of connections and queries to the database, thus improving performance of the system as a whole.
 
-D) If there are too many joins due to normalisations, ensure query does not join to a large table.
+-) Use temporary table to combine data sets together into one table. Once a temporary table is created, we can then query the table multiple times for different purposes, thus improving performance.
 
-E) Look to use some form of data caching mechanism such as memcache/Redis for better performance. Determine which data is not required to be displayed as "live" data and cache data based on N minutes.
+-) Look at enabling slow query logs and set a threshold and review the queries that are taking longer than this threshold. Review each query and determine if the query can be improve i.e joining on a large table, ensure only columns required are being selected, make use of composite indexes that aligns with existing queries (Also look to remove uncessary indexes).
 
-F) Look to use some form of output (HTML) caching to further improve performance by bypassing database and/or data cache altogether. Break down websites into modules (i.e navigation, footer, most popular etc) and cache these HTML outputs reducing the number of connections and queries to the database, thus improving performance of the system as a whole.
+-) Inspect queries by running EXPLAIN too see the amount of data that it is traversing and what indexes are currently being used.
 
-G) Look to store any aggregate counting columns against its own table. For example, if we needed to keep track of user's number of reviews, number of events etc, keep these together in the users table and update the count (Do not need a normalised table and adding a new row).
+-) Breaking down a single table down (with duplicating data) into smaller tables may help with performance. Also look to break down single complex query into mutliple queries to see if there are improvements.
 
-H) In terms of the listing page, make sure pagination of listing items are used as oppose to showing complete list.
+-) Look to store any "counting" columns within respective table. For example, if we need to keep track of user's number of reviews, number of events etc, create columns in users table and update the count.
+
+-) In terms of the listing page, make use of pagination to ensure subset of data is queried at that time.
 
 
 ## Data security and external use
