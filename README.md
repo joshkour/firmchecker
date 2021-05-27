@@ -15,8 +15,6 @@ Used here to the hide the complex subsystem of retrieving data for dashboard fro
 
 Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.
 
-### Considerations, Thoughts & Solutions regarding database performance and data security
-
 ## Database Performance (sluggish data-reads from the MySQL database)
 
 A) Look at enabling slow query logs and set a threshold and review the queries that are taking longer than this threshold. Review each query and determine if the query can be improve i.e ensure only columns required are being selected, look out for LIKE statements, make use of composite indexes are present that aligns with existing queries (Also look to remove uncessary indexes).
