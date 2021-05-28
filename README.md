@@ -57,7 +57,7 @@ B) Make use of Views to ensure only required data are visible to the external us
 
 You can make use of Views that exposes statistical data to the user and not the underlying data.
 
-C) Consider RBAC (Role-based access control) to provide a form of security layer based on permissions to restrict certain access to system components and data. This will provide a more manageable way of providing access to users of the system. When the number of new users increases, the use of RBAC significantly reduces the complexities around managing access. Once a Role is given to a user, they automatically are given the permissions to access the system and no extra requirements or management is needed. When a new permission is created and added to a Role, all existing users will gain this permission. Thus, RBAC roles provide both effective and efficients means of controlling access to various components of a system and data.
+C) Consider RBAC (Role-based access control) to provide a form of security layer based on permissions to restrict certain access to system components and data. This will provide a more manageable way of providing access to users of the system. When the number of new users increases, the use of RBAC significantly reduces the complexities around managing access. Once a Role is given to a user, they automatically are given the permissions to access the system and no extra requirements or management is needed. When a new permission is created and added to a Role, all existing users will gain this permission. Thus, RBAC roles provide both effective and efficients means of controlling access to various components and data of a system.
 
 Example roles:
 - Admin
