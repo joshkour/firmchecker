@@ -5,9 +5,13 @@ define('ROLE_ID_CLIENT', 2);
 define('ROLE_ID_USER', 3);
 
 // Permissions
-define('PERMISSION_ID_EVENTS_ALL', 1);
-define('PERMISSION_ID_EVENTS_ORGAISATION', 2);
-define('PERMISSION_ID_EVENTS_USER', 3);
+// views
+define('PERMISSION_VIEW_DASHBOARD_INDEX', 'view_dashboard_index');
+
+// data
+define('PERMISSION_DATA_EVENTS_ALL', 'data_events_all');
+define('PERMISSION_DATA_EVENTS_ORGANISATION', 'data_events_organisation');
+define('PERMISSION_DATA_EVENTS_USER', 'data_events_user');
 
 // Event types
 define('EVENT_TYPE_REVIEWED', 1);

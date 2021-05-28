@@ -25,7 +25,7 @@ class UserEventService
         $this->userEventRepository = $userEventRepository;
     }
 
-    /**
+	/**
      * Get events for dashboard.
      *
      * Events returned will be based on current user role
@@ -35,19 +35,19 @@ class UserEventService
      * @param string $toDate
      * @return array
      */
-     public function getDashboardEvents(array $eventTypeIds = [], string $fromDate = '', string $toDate = '') : array
-     {
+	public function getDashboardEvents(array $eventTypeIds = [], string $fromDate = '', string $toDate = '') : array
+	{
         $userEvents = [];
 
         // Determine what level of data access the current user has
         $user = Auth::user();
-        if ($user->hasPermission(PERMISSION_ID_EVENTS_USER)) {
+        if ($user->hasPermission(PERMISSION_DATA_EVENTS_USER)) {
             $userEvents = $this->userEventRepository->getUserEvents($user->organisation_id, $eventTypeIds, $fromDate, $toDate);
-        } else if ($user->hasPermission(PERMISSION_ID_EVENTS_ORGAISATION)) {
+        } else if ($user->hasPermission(PERMISSION_DATA_EVENTS_ORGANISATION)) {
             $userEvents = $this->userEventRepository->getOrganisationEvents($user->id, $eventTypeIds, $fromDate, $toDate);
-        } else if ($user->hasPermission(PERMISSION_ID_EVENTS_ALL)) {
+        } else if ($user->hasPermission(PERMISSION_DATA_EVENTS_ALL)) {
             $userEvents = $this->userEventRepository->getAllEvents($eventTypeIds, $fromDate, $toDate);
         }
 
         return $userEvents;
-     }
+	}

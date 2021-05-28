@@ -30,19 +30,19 @@ class DashboardController extends BaseController {
      * @param void
      * @return void
      */
-    public function index() 
+    public function index()
     {
         // Check if current logged in user has permission to access this page
         // If not, return with unauthorised (HTTP response with unauthorised)
         $user = Auth::user();
-        if (!$user->hasPermission('view_dashboard')) {
-            return $this->return('Unauthorised');
+        if (!$user->hasPermission(PERMISSION_VIEW_DASHBOARD_INDEX)) {
+            return $this->redirectUnauthorised();
         }
 
         // Facade is used to hide complexities and to ensure cleaner and maintainable code
         $dashboardMetrics = $this->dashboardFacade->getDashboardMetrics();
 
         // Pass data and display in the view
-    	$this->view('dashboard_metrics', [$dashboardMetrics]);
+    	return $this->view('dashboard_metrics', compact('dashboardMetrics'));
     }
 }
