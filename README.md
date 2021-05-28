@@ -18,7 +18,7 @@ Mediates between the domain and data mapping layers using a collection-like inte
 ### Database Performance (sluggish data-reads from the MySQL database)
 
 Configurations
-- Ensure that enough RAM is set aside for InnoDB buffer pool via mysql configuration (innodb_buffer_pool_size).
+- Ensure that enough RAM is set aside for InnoDB buffer pool via mysql configuration (innodb_buffer_pool_size). Tweaking and performing tests will need to be made to see if improvements can be achieved.
 
 - Look at enabling slow query logs and set a threshold and review the queries that are taking longer than this threshold. Review each query and determine if the query can be improve i.e joining on a large table, ensure only columns required are being selected, make use of composite indexes that aligns with existing queries (Also look to remove uncessary indexes).
 
